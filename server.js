@@ -58,7 +58,7 @@ app.post('/sendmail',(req,res)=>{
 		        }
 		    });	
 				let mailOptions = {
-		        from: 'TestNodemailerYelcamp@gmail.com', // sender address
+		        from: 'marisol43@ethereal.email', // sender address
 		        to: 'ferromassimo1989@gmail.com', // list of receivers
 		        subject: 'Work', // Subject line
 		        text: `Email:${email} Name:${name} Message:${message}`
