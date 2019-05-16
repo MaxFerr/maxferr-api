@@ -53,8 +53,8 @@ app.post('/sendmail',(req,res)=>{
 		let transporter = nodemailer.createTransport({
 					service: 'Gmail',		        
 					auth: {
-		            user: 'TestNodemailerYelcamp@gmail.com', // generated ethereal user
-		            pass: `TestNodemailerYelcampTestNodemailerYelcamp` // generated ethereal password
+		            user: 'marisol43@ethereal.email', // generated ethereal user
+		            pass: `${process.env.email_pass}` // generated ethereal password
 		        }
 		    });	
 				let mailOptions = {
