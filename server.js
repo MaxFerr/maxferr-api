@@ -53,18 +53,19 @@ app.post('/sendmail',(req,res)=>{
 		let transporter = nodemailer.createTransport({
 					service: 'Gmail',		        
 					auth: {
-		            user: 'TestNodemailerYelcamp@gmail.com', // generated ethereal user
+		            user: 'TestNodemailerYelcamp@yahoo.com', // generated ethereal user
 		            pass: `${process.env.email_pass}` // generated ethereal password
 		        }
 		    });	
 				let mailOptions = {
-		        from: 'TestNodemailerYelcamp@gmail.com', // sender address
+		        from: 'TestNodemailerYelcamp@yahoo.com', // sender address
 		        to: 'ferromassimo1989@gmail.com', // list of receivers
 		        subject: 'Work', // Subject line
 		        text: `Email:${email} Name:${name} Message:${message}`
 		      };
 		      transporter.sendMail(mailOptions, (error, info) => {
 		      	if (error) {
+		      		console.log(error)
 		      		return res.json('email not sent');
 		      	}
 		      	res.json('email sent')
