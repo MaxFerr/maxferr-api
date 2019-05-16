@@ -51,7 +51,7 @@ app.post('/sendmail',(req,res)=>{
 		return res.status(400).json('Incorrect form.')
 	}else {
 		let transporter = nodemailer.createTransport({
-					service: 'Gmail',		        
+					service: 'yahoo',		        
 					auth: {
 		            user: 'TestNodemailerYelcamp@yahoo.com', // generated ethereal user
 		            pass: `${process.env.email_pass}` // generated ethereal password
