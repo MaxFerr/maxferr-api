@@ -51,23 +51,20 @@ app.post('/sendmail',(req,res)=>{
 		return res.status(400).json('Incorrect form.')
 	}else {
 		let transporter = nodemailer.createTransport({
-					host: "smtp.ethereal.email",
-				    port: 587,
-				    secure: false, // true for 465, false for other ports		        
+					service: 'Gmail',		        
 					auth: {
-		            user: 'marisol43@ethereal.email', // generated ethereal user
+		            user: 'TestNodemailerYelcamp@gmail.com', // generated ethereal user
 		            pass: `${process.env.email_pass}` // generated ethereal password
 		        }
 		    });	
 				let mailOptions = {
-		        from: 'marisol43@ethereal.email', // sender address
+		        from: 'TestNodemailerYelcamp@gmail.com', // sender address
 		        to: 'ferromassimo1989@gmail.com', // list of receivers
 		        subject: 'Work', // Subject line
 		        text: `Email:${email} Name:${name} Message:${message}`
 		      };
 		      transporter.sendMail(mailOptions, (error, info) => {
 		      	if (error) {
-		      		console.log(error)
 		      		return res.json('email not sent');
 		      	}
 		      	res.json('email sent')
