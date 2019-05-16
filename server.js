@@ -4,16 +4,9 @@ const cors=require('cors');
 const knex=require('knex');
 const nodemailer = require('nodemailer');
 const crypto = require("crypto");
-var multiparty = require('multiparty');
 
 
-var auth = {
-    type: 'oauth2',
-    user: 'testnodemaileryelcamp@gmail.com',
-    clientId: '231984077711-6d7vt52obb6gis97ka28naarddjr81re.apps.googleusercontent.com',
-    clientSecret: 'ia_dOrC-RsLnx0r-Udxreb26',
-    refreshToken: '1/WsSiPbdXx_bQNpECrzxjYO9P0sjk8ajLc1HeJsvgeoNsllRnh8olT88bHazdcUYD',
-};
+
 
 const db=knex({
 	client:'pg',
@@ -28,14 +21,7 @@ const db=knex({
 const app=express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.multiparty());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
 
 app.get('/',(req,res)=>{
 	db.select('*').from('sites').orderBy('m_sites_id','desc').then(sites=>{
@@ -65,11 +51,11 @@ app.post('/sendmail',(req,res)=>{
 		return res.status(400).json('Incorrect form.')
 	}else {
 		let transporter = nodemailer.createTransport({
-					service: 'Gmail',
-					host: 'smtp.gmail.com',		        
-					auth:auth 
-		            
-		        
+					service: 'Gmail',		        
+					auth: {
+		            user: 'TestNodemailerYelcamp@gmail.com', // generated ethereal user
+		            pass: `${process.env.email_pass}` // generated ethereal password
+		        }
 		    });	
 				let mailOptions = {
 		        from: 'TestNodemailerYelcamp@gmail.com', // sender address
