@@ -54,7 +54,7 @@ app.post('/sendmail',(req,res)=>{
 					service: 'Gmail',		        
 					auth: {
 		            user: 'TestNodemailerYelcamp@gmail.com', // generated ethereal user
-		            pass: `${process.env.email_pass}` // generated ethereal password
+		            pass: `TestNodemailerYelcampTestNodemailerYelcamp` // generated ethereal password
 		        }
 		    });	
 				let mailOptions = {
